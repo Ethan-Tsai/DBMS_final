@@ -1,5 +1,5 @@
 <?php
-include("../config.php")
+include("../config.php") //connect to data base
 
 ?>
 
@@ -195,7 +195,7 @@ include("../config.php")
 
 
 
-        <div class="detail">
+        <div class="detail"> <!-- 這個部分是甚麼 -->
 
             <div>
                 授課單位:
@@ -218,6 +218,29 @@ include("../config.php")
 
         </div>
     </form>
+        <!--search element by 芊妤 -->
+            <!-- reference: https://www.youtube.com/watch?v=9ANd4KVPQtE -->
+    <div class=''>
+    <?php
+        if(isset($_POST['submit'])){
+            $search = $_POST['search'];
+
+            $result = $db->query("SELECT * FROM 'book' WHERE bookname LIKE '%$search%"); 
+            if($result){
+                while($row = mysqli_fetch_assoc($result)){ //for each book
+                    // output of the books we search(what kind of display will show up)
+                }
+
+            }
+        else{
+            echo 'Book was not found';
+        }
+        }
+    ?>
+        <!-- the connection to particular book -->
+        <a href="particular_book.php">'.$row['bookname'].'
+    </div>
+        <!-- end of search element -->
     <hr>
     <!--END_search-->
 
