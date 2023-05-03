@@ -32,6 +32,8 @@ include("../config.php") //connect to data base
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" media="screen" href="./profile.css">
+
     <title>member profile</title>
 
 </head>
@@ -54,15 +56,15 @@ include("../config.php") //connect to data base
                   <h3 class="fs-sm mb-0 text-muted">Dashboard</h3>
                 </div>
                 <ul class="list-unstyled mb-0">
-                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-orders.html"><i class="ci-bag opacity-60 me-2"></i>Transaction Point<span class="fs-sm text-muted ms-auto"><?php echo $account_transPoint?></span></a></li>
-                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-wishlist.html"><i class="ci-heart opacity-60 me-2"></i>Description Point<span class="fs-sm text-muted ms-auto"><?php echo $account_descPoint?></span></a></li>
-                  <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-tickets.html"><i class="ci-help opacity-60 me-2"></i>Orders<span class="fs-sm text-muted ms-auto">1</span></a></li>
+                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" ><i class="ci-bag opacity-60 me-2"></i>Transaction Point<span class="fs-sm text-muted ms-auto"><?php echo $account_transPoint?></span></a></li>
+                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" ><i class="ci-heart opacity-60 me-2"></i>Description Point<span class="fs-sm text-muted ms-auto"><?php echo $account_descPoint?></span></a></li>
+                  <!-- <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="order.php"><i class="ci-help opacity-60 me-2"></i>Orders<span class="fs-sm text-muted ms-auto">1</span></a></li> 之後要用 -->
                 </ul>
                 <div class="bg-secondary px-4 py-3">
                   <h3 class="fs-sm mb-0 text-muted">Settings</h3>
                 </div>
                 <ul class="list-unstyled mb-0">
-                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="account-profile.html"><i class="ci-user opacity-60 me-2"></i>Profile info</a></li>
+                  <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3 active" href="profile.php"><i class="ci-user opacity-60 me-2"></i>Profile info</a></li>
                   <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-address.html"><i class="ci-location opacity-60 me-2"></i>Books selling setting</a></li>
                   <!-- <li class="mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-payment.html"><i class="ci-card opacity-60 me-2"></i></a></li> --> <!--course setting -->
                   <!-- <li class="d-lg-none border-top mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="account-signin.html"><i class="ci-sign-out opacity-60 me-2"></i>Sign out</a></li> -->
@@ -74,23 +76,33 @@ include("../config.php") //connect to data base
     <!-- Profile form-->
             <form>
               <div class="bg-secondary rounded-3 p-4 mb-4">
-                <div class="d-flex align-items-center"><img class="rounded" src="<?php $member_image ?>" width="90" alt="Susan Gardner">
+                <div class="d-flex align-items-center"><img class="rounded" src="../img/member_profile.jpg" width="90" alt="Non picture"> <?php// $member_image ?>
                   <div class="ps-3">
                     <form action = "" method = "POST">
                         <button class="btn btn-light btn-shadow btn-sm mb-2" type="submit" name = "submit"><i class="ci-loading me-2"></i>Change photo</button> <!-- connect to db latter -->
                     <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image.</div>
                     </form>
+
+                    <?php
+                        if(isset($_POST['submit'])){
+                            $image = $_FILES['image'];
+                        }
+                    ?>
+
                   </div>
                 </div>
               </div>
               <div class="row gx-4 gy-3">
+
+                <form action = "" method = "POST">
+
                 <div class="col-sm-6">
                   <label class="form-label" for="account-fn">Name</label>
-                  <input class="form-control" type="text" id="account-fn" value="<?php echo $member_name?>">
+                  <input class="form-control" type="text" id="account-fn" name = "name" value="<?php echo $member_name?>">
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label" for="account-ln">Department</label>
-                  <input class="form-control" type="text" id="account-ln" value="<?php echo $member_department?>">
+                  <input class="form-control" type="text" id="account-ln" name = "department" value="<?php echo $member_department?>">
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label" for="account-email">Email Address</label>
@@ -98,14 +110,14 @@ include("../config.php") //connect to data base
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label" for="account-phone">Phone Number</label>
-                  <input class="form-control" type="text" id="account-phone" value="<?php echo $member_phone?>" required>
+                  <input class="form-control" type="text" id="account-phone" name = "phoneNumber" value="<?php echo $member_phone?>" required>
                 </div>
                 <div class="col-sm-6">
                   <label class="form-label" for="account-pass">New Password</label>
                   <div class="password-toggle">
                     <input class="form-control" type="password" id="account-pass">
                     <label class="password-toggle-btn" aria-label="Show/hide password">
-                      <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span> <!--connect to db-->
+                      <input class="password-toggle-check" type="checkbox" name = "password"><span class="password-toggle-indicator"></span> <!--connect to db-->
                     </label>
                   </div>
                 </div>
@@ -114,7 +126,7 @@ include("../config.php") //connect to data base
                   <div class="password-toggle">
                     <input class="form-control" type="password" id="account-confirm-pass">
                     <label class="password-toggle-btn" aria-label="Show/hide password">
-                      <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                      <input class="password-toggle-check" type="checkbox" name = "password_check"><span class="password-toggle-indicator"></span>
                     </label>
                   </div>
                 </div>
@@ -128,70 +140,51 @@ include("../config.php") //connect to data base
                     <button class="btn btn-primary mt-3 mt-sm-0" type="button">Update profile</button> <!--change info in db -->
                   </div>
                 </div>
+                </from>
+
               </div>
             </form>
           </section>
         </div>
       </div>
+    
+        <?php
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $member_password = $_POST["password"];
+            $member_password_check = $_POST["password_check"];
+            $member_name = $_POST["name"];
+            $member_department = $_POST["department"];
+            $member_phone = $_POST["phoneNumber"];
+
+            if($password != $password_check){
+               
+                echo '<script type="text/javascript">alert("Different password were entered");</script>';
+                ?>
+                <meta http-equiv="refresh" content="0;url=profile.php">;
+                <?php
+            }
+
+            if (strlen($_POST["password"]) < 8) {
+                die("Password must be at least 8 characters");
+            }
+            
+            if ( ! preg_match("/[a-z]/i", $_POST["password"])) {
+                die("Password must contain at least one letter");
+            }
+            
+            if ( ! preg_match("/[0-9]/", $_POST["password"])) {
+                die("Password must contain at least one number");
+            }
+
+            else{
+                $upload_info = "UPDATE member SET name = $member_name, department = $member_department, phoneNumber = $member_phone, password = $member_password
+                                WHERE mId = '$mId";
+            }
+        }
+        ?>
+        
     </main>
 
-    <header>
-        <div class="container">
-            <div class="profile">
-                <div class="profile-image">
-                    <img src="<?=$member_image?>" alt="" width="300px">
-                </div>
-                <div class="profile-user-settings">
-                    <h1 class="profile-user-name"><?php echo  $member_name;?></h1>
-                    <button class="btn profile-edit-btn">Edit Profile</button>
-                    <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
-                </div>
-                <div class="profile-stats">
-                    <ul>
-                        <li><span class="profile-stat-count"><?php echo $selling_record; ?></span> selling record</li>
-                        <li><span class="profile-stat-count"><?php echo $profile['phoneNumber']; ?></span> phone number</li>
-                        <li><span class="profile-stat-count"><?php echo $profile['department']; ?></span> department</li>
-                    </ul>
-                </div>
-                <!-- <div class="profile-bio">
-                    <p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
-                </div> -->
-            </div>
-            <!-- End of profile section -->
-        </div>
-        <!-- End of container -->
-    </header>
-
-            <?php 
-                $sql = "SELECT * FROM `book` JOIN `member` WHERE `mId`='$mId'  ORDER BY `uploaded_time` DESC";
-                $member_posts = $db->query($sql);                
-            ?>
-
-        <div class="container">
-            <div class="gallery">
-            <?php
-                foreach($user_posts as $user_post){
-                        $user_images = $user_post["image_file_name"];
-                        $post_id = $user_post["id"];
-            ?>     
-                <div class="gallery-item" tabindex="0">
-                       
-                    <a href="edit.php?post_id=<?=$post_id;?>">
-                        <img src="<?php echo $user_images;?>" class="gallery-image" alt="">
-                        <div class="gallery-item-info">
-                            <ul>
-                                <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i class="fas fa-heart" aria-hidden="true"></i> 56</li>
-                                <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i class="fas fa-comment" aria-hidden="true"></i> 2</li>
-                            </ul>
-                        </div>
-                    </a>
-                </div>
-            <?php
-                
-                }   
-            ?>
-            </div>
-        </div>
-    
+    <script src="profile.js"></script>
 </body>
 </html>
