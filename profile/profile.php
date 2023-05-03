@@ -5,17 +5,13 @@ include("../config.php") //connect to data base
 <!DOCTYPE html>
 
     <?php 
-      $mId = $_SESSION["mId"];
+      $mId = $_SESSION["mId"]; //checking whether connected or not
 
       if(isset($mId)){
 
         $sql = "SELECT * FROM `memeber` WHERE `email`='$email'";
-<<<<<<< Updated upstream
-        $get_user_profile = $db->query($sql);
-=======
-        $get_user_profile = $db -> query($sql);
->>>>>>> Stashed changes
-        $nRows = $db->query("SELECT count(*) FROM `member` JOIN `book` WHERE `mId`='$mId'")->fetchColumn(); 
+        $get_member_profile = $db->query($sql);
+        $selling_record = $db->query("SELECT count(*) FROM `member` JOIN `book` WHERE `mId`='$mId'")->fetchColumn(); 
         foreach($get_member_profile as $profile){
             $member_image = $profile["member_picture"];
             $member_name = $profile["member_name"]; 
@@ -28,17 +24,42 @@ include("../config.php") //connect to data base
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>member profile</title>
+
 </head>
 
 
 <body>
+
+    <header>
+        <div class="container">
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="<?=$member_image?>" alt="" width="300px">
+                </div>
+                <div class="profile-user-settings">
+                    <h1 class="profile-user-name"><?php echo  $member_name;?></h1>
+                    <button class="btn profile-edit-btn">Edit Profile</button>
+                    <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
+                </div>
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="profile-stat-count"><?php echo $selling_record; ?></span> selling record</li>
+                        <li><span class="profile-stat-count"><?php echo $profile['phoneNumber']; ?></span> phone number</li>
+                        <li><span class="profile-stat-count"><?php echo $profile['department']; ?></span> department</li>
+                    </ul>
+                </div>
+                <!-- <div class="profile-bio">
+                    <p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur adipisicing elit 📷✈️🏕️</p>
+                </div> -->
+            </div>
+            <!-- End of profile section -->
+        </div>
+        <!-- End of container -->
+    </header>
+
             <?php 
                 $sql = "SELECT * FROM `book` JOIN `member` WHERE `mId`='$mId'  ORDER BY `uploaded_time` DESC";
-<<<<<<< Updated upstream
-                $member_post = $db->query($sql);                
-=======
-                $member_post = $db -> query($sql);                
->>>>>>> Stashed changes
+                $member_posts = $db->query($sql);                
             ?>
 
         <div class="container">
