@@ -15,7 +15,9 @@ include("../config.php") //connect to data base
         foreach($get_member_profile as $profile){
             $member_image = $profile["picture"];
             $member_name = $profile["name"];
-            $member_email = $profile["email"] 
+            $member_email = $profile["email"]; 
+            $member_department = $profile["department"];
+            $member_phone = $profile["phoneNumber"];
         }
 
         $get_account_point = $db -> query("SELECT * FROM `account` WHERE `mId` = `$mId`");
@@ -68,6 +70,70 @@ include("../config.php") //connect to data base
               </div>
             </div>
     </aside>
+
+    <!-- Profile form-->
+            <form>
+              <div class="bg-secondary rounded-3 p-4 mb-4">
+                <div class="d-flex align-items-center"><img class="rounded" src="<?php $member_image ?>" width="90" alt="Susan Gardner">
+                  <div class="ps-3">
+                    <form action = "" method = "POST">
+                        <button class="btn btn-light btn-shadow btn-sm mb-2" type="submit" name = "submit"><i class="ci-loading me-2"></i>Change photo</button> <!-- connect to db latter -->
+                    <div class="p mb-0 fs-ms text-muted">Upload JPG, GIF or PNG image.</div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="row gx-4 gy-3">
+                <div class="col-sm-6">
+                  <label class="form-label" for="account-fn">Name</label>
+                  <input class="form-control" type="text" id="account-fn" value="<?php echo $member_name?>">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="account-ln">Department</label>
+                  <input class="form-control" type="text" id="account-ln" value="<?php echo $member_department?>">
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="account-email">Email Address</label>
+                  <input class="form-control" type="email" id="account-email" value="<?php echo $member_email?>" disabled>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="account-phone">Phone Number</label>
+                  <input class="form-control" type="text" id="account-phone" value="<?php echo $member_phone?>" required>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="account-pass">New Password</label>
+                  <div class="password-toggle">
+                    <input class="form-control" type="password" id="account-pass">
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                      <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span> <!--connect to db-->
+                    </label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <label class="form-label" for="account-confirm-pass">Confirm Password</label>
+                  <div class="password-toggle">
+                    <input class="form-control" type="password" id="account-confirm-pass">
+                    <label class="password-toggle-btn" aria-label="Show/hide password">
+                      <input class="password-toggle-check" type="checkbox"><span class="password-toggle-indicator"></span>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <hr class="mt-2 mb-3">
+                  <div class="d-flex flex-wrap justify-content-between align-items-center">
+                    <!-- <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="subscribe_me" checked>
+                      <label class="form-check-label" for="subscribe_me">Subscribe me to Newsletter</label>
+                    </div> -->
+                    <button class="btn btn-primary mt-3 mt-sm-0" type="button">Update profile</button> <!--change info in db -->
+                  </div>
+                </div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
 
     <header>
         <div class="container">
