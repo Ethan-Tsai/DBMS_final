@@ -26,7 +26,7 @@ include("../config.php") //connect to data base
             $account_descPoint = $point["descPoint"];
         }
 
-        $get_selling_book = $db -> query("SELECT * FROM `book` JOIN `member` WHERE mId = $mId");
+        $get_selling_book = $db -> query("SELECT * FROM `book` JOIN `member` WHERE mId = $mId ORDER BY `update_time`DESC");
         foreach($get_selling_book as $book){
             $book_name = $book["bookname"];
             $book_price = $book["price"];
@@ -81,18 +81,23 @@ include("../config.php") //connect to data base
             </div>
     </aside>
     
-
+    <?php
+    foreach ($get_selling_book as $book) {
+    ?>
     <div class="widget-cart-item py-2 border-bottom">
         <button class="btn-close text-danger" type="button" aria-label="Remove" harf = "../dele_function/dele.php"><span aria-hidden="true">&times;</span></button>
         <br>
         <button class="btn-close text-danger" type="button" aria-label="Edit" harf = "../edit_function/edit.php"><span aria-hidden="true">&times;</span></button>
-            <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="<?php echo $book_picture; ?>" width="64" alt="Product"></a>
+            <div class="d-flex align-items-center"><a class="flex-shrink-0" href="shop-single-v1.html"><img src="<?php $book["$book_picture"] ?>" width="64" alt="Product"></a>
                     <div class="ps-2">
-                        <h6 class="widget-product-title"><a href="particular_book"><?php echo $book_name; ?></a></h6>
-                        <div class="widget-product-meta"><span class="text-accent me-2"><?php echo $book_price; ?></span></div>
+                        <h6 class="widget-product-title"><a href="particular_book"><?php $book["$book_name"] ?></a></h6>
+                        <div class="widget-product-meta"><span class="text-accent me-2"><?php echo $book["$book_price"]?></span></div>
                     </div>
             </div>
     </div>    
+    <?php
+    }
+    ?>
     <!-- put the construct of book browse surface -->
 
     <script src="profile.js"></script>
