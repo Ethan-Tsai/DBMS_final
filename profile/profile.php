@@ -10,7 +10,11 @@ include("../config.php") //connect to data base
       if(isset($mId)){
 
         $sql = "SELECT * FROM `memeber` WHERE `email`='$email'";
+<<<<<<< Updated upstream
         $get_user_profile = $db->query($sql);
+=======
+        $get_user_profile = $db -> query($sql);
+>>>>>>> Stashed changes
         $nRows = $db->query("SELECT count(*) FROM `member` JOIN `book` WHERE `mId`='$mId'")->fetchColumn(); 
         foreach($get_member_profile as $profile){
             $member_image = $profile["member_picture"];
@@ -30,7 +34,11 @@ include("../config.php") //connect to data base
 <body>
             <?php 
                 $sql = "SELECT * FROM `book` JOIN `member` WHERE `mId`='$mId'  ORDER BY `uploaded_time` DESC";
+<<<<<<< Updated upstream
                 $member_post = $db->query($sql);                
+=======
+                $member_post = $db -> query($sql);                
+>>>>>>> Stashed changes
             ?>
 
         <div class="container">
