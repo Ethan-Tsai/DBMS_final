@@ -1,0 +1,352 @@
+ /* profile photo */
+ .member-photo#member-photo {
+  width: 55px; /* Adjust the size as desired */
+  height: 55px;
+  border-radius: 60%;
+  overflow: hidden;
+  position: absolute;
+  top: 50px; /* Adjust the vertical position as needed */
+  left: 1200px; /* Adjust the horizontal position as needed */
+}
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* end with profile photo */
+
+main .card {
+    max-width: 1000px;
+    flex: 1 1 210px;
+    text-align: center;
+    height: 250px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    transition: transform 0.3s;
+}
+
+main .card .caption{
+    padding-left: 1em;
+    text-align: left;
+    line-height: 2em;
+    height: 25%;
+}
+
+main .card .div{
+    font-size: 1rem;
+}
+
+body {
+    height: 100vh;
+  }
+  
+  .post-btn-position {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+
+.post-btn-design:hover {
+    transform: translateY(-1px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/*   
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 1200px;
+    opacity: 0;
+    border: 2px solid #a79770;
+    background: white;
+    border-radius: 5px;
+    z-index: 9999;
+  } */
+  
+  .popup.active {
+    opacity: 1;
+    z-index: 9999;
+  }
+  
+  .popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    color: #a79770;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .popup .form p {
+    text-align: center;
+    font-size: 2rem;
+  }
+  
+  .popup .form .form-element {
+    margin: 20px 15px 20px 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .popup .form .form-element label,
+  .popup .form .selection_box label {
+    font-size: 1rem;
+    color: #222;
+  }
+  
+  .selection_box {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .selection_item {
+    margin-right: 10px;
+  }
+  
+  .popup .form .form-element input[type="text"],
+  .popup .form .form-element textarea,
+  .popup .form .form-element select {
+    margin-top: 5px;
+    display: block;
+    width: 300px;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+  }
+  
+  .popup .form-element-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .popup .form .form-element button {
+    width: min-content;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  .container {
+    position: relative;
+  }
+  
+  .container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    /* background: rgba(0, 0, 0, 0.5); */
+    backdrop-filter: blur(8px);
+    z-index: 9998;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .container.active::before {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .container.active #popup {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s, visibility 0s 0.3s;
+  }
+
+  .popup .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #a79770;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px; /* Adjust the width as needed */
+    max-height: 80vh;
+    overflow-y: auto;
+    opacity: 0;
+    border: 2px solid #a79770;
+    background: white;
+    border-radius: 5px;
+    z-index: -9999;
+    padding: 20px;
+}
+
+.selection_box {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.selection_item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.popup .form .selection_box label {
+    margin-right: 5px;
+}
+
+.popup .form .selection_box select {
+    margin-left: 5px;
+}
+
+.popup .form .form-element textarea {
+    margin-top: 5px;
+    display: block;
+    width: 400px; /* Adjust the width as desired */
+    padding: 10px;
+    outline: none;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.post-btn-design {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 35px;
+    font-weight: 150;
+    color: #a79770;
+    /* border: 2px solid #a79770; */
+    background-color: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 0px 10px 49px 10px;
+}
+
+.post-btn-design {
+  position: relative;
+}
+
+.post-btn-design svg {
+  position: relative;
+  top: -8px; /* 根據需要調整上偏移量 */
+}
+
+#card {
+    margin-left: 130px;
+}
+
+.search_section{
+    margin-left: 400px;
+}
+
+.star-rating i {
+    font-size: 14px;
+    color: #a79770;
+}
+
+.star-rating{
+  width: 150px; /* 更改為所需的寬度 */
+}
+
+b{
+  font-size: 25px;
+}
+
+div.caption{
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.rating-position{
+  padding-top: 20px;
+}
+
+#add-btn {
+  outline: none;
+}
+
+.end-of-search {
+  text-align: center;
+  color: #ff0000;
+}
+
+.thin-hr {
+  border: 0;
+  border-top: 1px solid #ccc;
+}
+
+#course_name{
+  font-size: 20px;
+}
+
+.search_instruction{
+  font-size: 20px;
+  font-weight: 600;
+  padding-right: 10px;
+}
+
+.search_section{
+  padding-top: 30px;
+  margin-left: 380px;
+}
+
+.search-btn{
+  margin-left: 10px;
+}
+
+.card {
+  position: relative;
+}
+
+.read-more-btn {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.content{
+  width: 750px;
+}
+
+.p-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.p-container p {
+  margin-right: 10px;
+  width: 250px;
+  font-size: 18px;
+}
+
+.p-container p span{
+  font-weight: bold;
+}
+
+.like-btn {
+  position: absolute;
+  bottom: 30px;
+  right: 170px;
+}

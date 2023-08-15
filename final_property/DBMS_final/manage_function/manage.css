@@ -1,0 +1,19 @@
+h1, button {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  /* 让 h1 居中 */
+  h1 {
+    text-align: center;
+  }
+  
+  /* 让 button 靠右 */
+  button {
+    width: 200px;
+    background-color: #A79770;
+    font: #000 !important; 
+    position:absolute;
+    right:10px;
+    top:20px;
+  }
