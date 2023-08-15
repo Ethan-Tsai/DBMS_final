@@ -1,5 +1,5 @@
 <?php
-include("../config.php")
+include("../config.php") //connect to data base
 
 ?>
 
@@ -113,7 +113,7 @@ include("../config.php")
 
 
 
-    <!--selection-->
+    <!--selection-->  <!--should connect with db 和使用演算法 'advance'--> 
     <section class="skrollable skrollable-between u-align-center  u-clearfix u-container-align-center u-section-4" src="" style="background-color:whitesmoke;">
         <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
             <h1 class="u-align-center u-text u-text-default u-text-1">Picks of the month.
@@ -195,7 +195,7 @@ include("../config.php")
 
 
 
-        <div class="detail">
+        <!-- <div class="detail">
 
             <div>
                 授課單位:
@@ -214,10 +214,48 @@ include("../config.php")
             </div>
             <div>
                 <img src="./images/up.png" alt="" width="30px" id="close">
-            </div>
+            </div> -->
 
         </div>
     </form>
+        <!-- search element by 芊妤 -->
+            <!-- reference: https://www.youtube.com/watch?v=9ANd4KVPQtE -->
+    <div class='search_process'>
+    <?php
+        if(isset($_POST['submit'])){
+            $search = $_POST['search'];
+
+            $result = $db->query("SELECT * FROM 'book' WHERE bookname LIKE '%$search% or ISBN = '$search'"); 
+            if($result){
+                while($row = mysqli_fetch_assoc($result)){ //for each book
+                ?>    
+                <!-- output of the books we search(what kind of display will show up) -->
+                <div class="bro_item">
+                        <p><?=$row["update_time"]?></p>
+                    <hr>
+                    <a href="">
+                        <img src="<?=$row["picture"]?>" alt="" width="300px">
+                    </a>
+                    <hr>
+                    <div>
+                        <p><?=$row["bookname"]?>
+                            <em><?=$row["price"]?></em>
+                        </p>
+                    </div>
+                </div>
+                <?
+                }
+
+            }
+        else{
+            echo 'Book was not found';
+        }
+        }
+    ?>
+        <!-- the connection to particular book -->
+        <a href="particular_book.php">'.$row['bookname'].'
+    </div>
+        <!-- end of search element -->
     <hr>
     <!--END_search-->
 

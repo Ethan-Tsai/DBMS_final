@@ -34,7 +34,7 @@ session_start();
                     <input type="text" class="form-control" id="ISBN" name="ISBN">
 
                     <label for="dep" class="form-label">開課單位:</label>
-                    <select name="dep" id="dep">
+                    <select name="dep" id="dep"> <!-- 是否要匯入系所選項 -->
                         <option value="1">資管</option>
                         <option value="2">外文</option>
                         <option value="3">博雅</option>
@@ -50,7 +50,11 @@ session_start();
                     <label for="state">新舊程度</label>
                     <select name="state" id="state">
                 <option value="1">全新未使用</option>
+                <option value="2">9成新以上</option>
                 <option value="2">8成新以上</option>
+                <option value="2">7成新以上</option>
+                <option value="2">6成新以上</option>
+                <option value="2">5成新以下</option>
                 <option value="3">其他</option>
             </select>
                 </div>

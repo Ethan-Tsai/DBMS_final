@@ -1,0 +1,73 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+.star-rating i {
+    font-size: 20px;
+    color: #a79770;
+}
+
+.star-rating {
+    width: 150px;
+    /* 更改為所需的寬度 */
+}
+
+#review_form{
+    border: 1px solid #A79770;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    width: 1000px;
+    height: auto;
+    padding: 40px;
+    font-size: 20px;
+    margin-top: 200px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+#star-1 {
+    margin-left: 38px;
+}
+
+#star-2 {
+    margin-left: 45px;
+}
+
+#star-3 {
+    margin-left: 14px;
+}
+
+.star-rating {
+    width: auto;
+}
+
+form {
+    font-size: 28px;
+}
+
+.content {
+    padding-top: 10px;
+}
+
+.container {
+    padding: 0;
+}
+
+.item {
+    padding-left: 110px;
+}
+
